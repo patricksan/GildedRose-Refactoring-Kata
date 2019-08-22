@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 class GildedRose {
 	private static final int MINIMAL_QUALITY = 0;
 	private static final int MAX_QUALITY = 50;
-	private Item[] items;
+	Item[] items;
 
 	GildedRose(Item[] items) {
 		this.items = items;
@@ -19,7 +19,7 @@ class GildedRose {
 			Item item = items[i];
 			if (!item.name.equals("Aged Brie")
 					&& !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-				if (item.quality > 0) {
+				if (item.quality > MINIMAL_QUALITY) {
 					if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
 						item.quality--;
 					}
