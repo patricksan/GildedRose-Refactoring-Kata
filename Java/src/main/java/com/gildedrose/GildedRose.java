@@ -6,9 +6,9 @@ import java.util.stream.IntStream;
  * TODO: There is no check. We could add a check that a item can never be more than 50 and also for Sulfuras it has value 80
  */
 class GildedRose {
-	public static final int MINIMAL_QUALITY = 0;
-	public static final int MAX_QUALITY = 50;
-	Item[] items;
+	private static final int MINIMAL_QUALITY = 0;
+	private static final int MAX_QUALITY = 50;
+	private Item[] items;
 
 	GildedRose(Item[] items) {
 		this.items = items;
@@ -28,7 +28,6 @@ class GildedRose {
 				if (item.name.equals(Goods.CONJURED.getName()) && item.quality < MAX_QUALITY) {
 					item.quality--;
 				}
-
 			} else {
 				if (item.quality < MAX_QUALITY) {
 					item.quality++;
