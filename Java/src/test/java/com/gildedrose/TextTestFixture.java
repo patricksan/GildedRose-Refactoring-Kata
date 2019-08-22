@@ -13,9 +13,7 @@ public class TextTestFixture {
                 new Item(Goods.BACKSTAGE.getName(), 15, 20),
                 new Item(Goods.BACKSTAGE.getName(), 10, 49),
                 new Item(Goods.BACKSTAGE.getName(), 5, 49),
-                // this conjured item does not work properly yet
                 new Item(Goods.CONJURED.getName(), 3, 6)};
-
         GildedRose app = new GildedRose(items);
 
         int days = 2;
