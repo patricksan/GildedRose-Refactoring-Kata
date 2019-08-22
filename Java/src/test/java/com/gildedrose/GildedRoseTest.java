@@ -8,7 +8,7 @@ public class GildedRoseTest {
 
     @Test
     public void testBasicLowerBothValues() {
-        Item[] items = new Item[]{new Item("foo", 1, 1)};
+        Item[] items = new Item[]{new Item(Goods.ELIXIR.getName(), 1, 1)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
@@ -19,7 +19,7 @@ public class GildedRoseTest {
 
     @Test
     public void testOnceTheSellByDateHasPassedQualityDegradesTwiceAsFast() {
-        Item[] items = new Item[]{new Item("foo", 2, 23)};
+        Item[] items = new Item[]{new Item(Goods.ELIXIR.getName(), 2, 23)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(1, app.items[0].sellIn);
@@ -36,7 +36,7 @@ public class GildedRoseTest {
 
     @Test
     public void testQualityIsNeverNegative() {
-        Item[] items = new Item[]{new Item("foo", 10, 1)};
+        Item[] items = new Item[]{new Item(Goods.ELIXIR.getName(), 10, 1)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
@@ -53,7 +53,7 @@ public class GildedRoseTest {
 
     @Test
     public void testAgedBrie() {
-        Item[] items = new Item[]{new Item("Aged Brie", 10, 30)};
+        Item[] items = new Item[]{new Item(Goods.AGED_BRIE.getName(), 10, 30)};
         GildedRose app = new GildedRose(items);
         // "Aged Brie" actually increases in Quality the older it gets
         app.updateQuality();
@@ -71,7 +71,7 @@ public class GildedRoseTest {
 
     @Test
     public void testQualityNeverMoreThan50() {
-        Item[] items = new Item[]{new Item("Aged Brie", 10, 49)};
+        Item[] items = new Item[]{new Item(Goods.AGED_BRIE.getName(), 10, 49)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
@@ -88,7 +88,7 @@ public class GildedRoseTest {
 
     @Test
     public void testSulfuras() {
-        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 10, 80)};
+        Item[] items = new Item[]{new Item(Goods.SULFURAS.getName(), 10, 80)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(10, app.items[0].sellIn);
@@ -101,7 +101,7 @@ public class GildedRoseTest {
 
     @Test
     public void testBackstagePasses() {
-        Item[] items = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 12, 30)};
+        Item[] items = new Item[]{new Item(Goods.BACKSTAGE.getName(), 12, 30)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(11, app.items[0].sellIn);
@@ -140,7 +140,7 @@ public class GildedRoseTest {
 
     @Test
     public void testConjured() {
-        Item[] items = new Item[]{new Item("Conjured", 5, 30)};
+        Item[] items = new Item[]{new Item(Goods.CONJURED.getName(), 5, 30)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(4, app.items[0].sellIn);
