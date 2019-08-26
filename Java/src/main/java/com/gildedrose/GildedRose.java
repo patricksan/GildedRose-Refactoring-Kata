@@ -38,7 +38,7 @@ class GildedRose {
 		}
 	}
 
-	public Item[] getItems() {
+	Item[] getItems() {
 		return items;
 	}
 }
