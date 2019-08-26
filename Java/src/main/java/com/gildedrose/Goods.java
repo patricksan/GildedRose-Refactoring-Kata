@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+/**
+ * Enumeration with all non-generic items
+ */
 public enum Goods {
 	DEXTERITY("+5 Dexterity Vest"),
 	AGED_BRIE("Aged Brie"),

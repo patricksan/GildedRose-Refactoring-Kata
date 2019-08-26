@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test with all scenarios described in the documentation.
+ */
 public class GildedRoseTest {
 
     @Test

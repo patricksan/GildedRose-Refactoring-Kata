@@ -15,11 +15,19 @@ class GildedRose {
 	void updateQuality() {
 		IntStream.range(0, items.length).forEach(i -> {
 			final GeneralGoods goods = factoryGeneralGoods(items[i]);
+			// calculate the daily update
 			items[i] = goods.dailyUpdate(items[i]);
+			// generic good validator
 			GoodsValidator.validate(items[i]);
 		});
 	}
 
+	/**
+	 * Factory a generic object from a specific good.
+	 *
+	 * @param item a specific good or a generic one
+	 * @return the correct object.
+	 */
 	private GeneralGoods factoryGeneralGoods(Item item) {
 		if (item.name.equals(Goods.CONJURED.getName())) {
 			return new Conjured();
@@ -34,6 +42,7 @@ class GildedRose {
 		} else if (item.name.equals(Goods.SULFURAS.getName())) {
 			return new Sulfuras();
 		} else {
+			// normal rules
 			return new GeneralGoods();
 		}
 	}
