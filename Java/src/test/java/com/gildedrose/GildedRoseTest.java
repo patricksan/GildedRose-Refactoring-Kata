@@ -124,7 +124,6 @@ public class GildedRoseTest {
         app.updateQuality(); //5
         app.updateQuality(); //4
 
-
         app.updateQuality();
         assertEquals(3, app.items[0].sellIn);
         assertEquals(48, app.items[0].quality);

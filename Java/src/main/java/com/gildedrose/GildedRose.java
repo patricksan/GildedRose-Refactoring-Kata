@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.model.*;
+
 import java.util.stream.IntStream;
 
 /**
@@ -16,54 +18,32 @@ class GildedRose {
 
 	void updateQuality() {
 		IntStream.range(0, items.length).forEach(i -> {
-			Item item = items[i];
-			if (!item.name.equals("Aged Brie")
-					&& !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-				if (item.quality > MINIMAL_QUALITY) {
-					if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-						item.quality--;
-					}
-				}
+			final GeneralGoods goods;
 
-				if (item.name.equals(Goods.CONJURED.getName()) && item.quality < MAX_QUALITY) {
-					item.quality--;
-				}
-			} else {
-				if (item.quality < MAX_QUALITY) {
-					item.quality++;
-
-					if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-						if (item.sellIn < 11 && item.quality < MAX_QUALITY) {
-							item.quality++;
-
-						}
-
-						if (item.sellIn < 6 && item.quality < MAX_QUALITY) {
-							item.quality++;
-						}
-					}
-				}
+			switch (items[i].name) {
+				case "Conjured Mana Cake":
+					goods = new Conjured();
+					break;
+				case "Aged Brie":
+					goods = new AgedBrie();
+					break;
+				case "Backstage passes to a TAFKAL80ETC concert":
+					goods = new Backstage();
+					break;
+				case "+5 Dexterity Vest":
+					goods = new Dexterity();
+					break;
+				case "Elixir of the Mongoose":
+					goods = new Elixir();
+					break;
+				case "Sulfuras, Hand of Ragnaros":
+					goods = new Sulfuras();
+					break;
+				default:
+					goods = new GeneralGoods();
 			}
-			if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-				item.sellIn--;
-			}
-			if (item.sellIn < 0) {
-				if (!item.name.equals("Aged Brie")) {
-					if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-						if (item.quality > 0) {
-							if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-								item.quality--;
-							}
-						}
-					} else {
-						item.quality = MINIMAL_QUALITY;
-					}
-				} else {
-					if (item.quality < MAX_QUALITY) {
-						item.quality++;
-					}
-				}
-			}
+
+			items[i] = goods.dailyUpdate(items[i]);
 		});
 	}
 }
