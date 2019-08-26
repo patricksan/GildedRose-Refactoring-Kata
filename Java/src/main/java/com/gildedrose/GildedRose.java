@@ -1,11 +1,12 @@
 package com.gildedrose;
 
 import com.gildedrose.model.*;
+import com.gildedrose.validator.GoodsValidator;
 
 import java.util.stream.IntStream;
 
 class GildedRose {
-	Item[] items;
+	private Item[] items;
 
 	GildedRose(Item[] items) {
 		this.items = items;
@@ -13,32 +14,31 @@ class GildedRose {
 
 	void updateQuality() {
 		IntStream.range(0, items.length).forEach(i -> {
-			final GeneralGoods goods;
-
-			switch (items[i].name) {
-				case "Conjured Mana Cake":
-					goods = new Conjured();
-					break;
-				case "Aged Brie":
-					goods = new AgedBrie();
-					break;
-				case "Backstage passes to a TAFKAL80ETC concert":
-					goods = new Backstage();
-					break;
-				case "+5 Dexterity Vest":
-					goods = new Dexterity();
-					break;
-				case "Elixir of the Mongoose":
-					goods = new Elixir();
-					break;
-				case "Sulfuras, Hand of Ragnaros":
-					goods = new Sulfuras();
-					break;
-				default:
-					goods = new GeneralGoods();
-			}
-
+			final GeneralGoods goods = factoryGeneralGoods(items[i]);
 			items[i] = goods.dailyUpdate(items[i]);
+			GoodsValidator.validate(items[i]);
 		});
+	}
+
+	private GeneralGoods factoryGeneralGoods(Item item) {
+		if (item.name.equals(Goods.CONJURED.getName())) {
+			return new Conjured();
+		} else if (item.name.equals(Goods.AGED_BRIE.getName())) {
+			return new AgedBrie();
+		} else if (item.name.equals(Goods.BACKSTAGE.getName())) {
+			return new Backstage();
+		} else if (item.name.equals(Goods.DEXTERITY.getName())) {
+			return new Dexterity();
+		} else if (item.name.equals(Goods.ELIXIR.getName())) {
+			return new Elixir();
+		} else if (item.name.equals(Goods.SULFURAS.getName())) {
+			return new Sulfuras();
+		} else {
+			return new GeneralGoods();
+		}
+	}
+
+	public Item[] getItems() {
+		return items;
 	}
 }
